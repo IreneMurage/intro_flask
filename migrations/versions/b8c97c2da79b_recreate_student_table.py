@@ -1,8 +1,8 @@
-"""<first commit>
+"""Recreate student table
 
-Revision ID: a684ce03a672
-Revises: 
-Create Date: 2025-09-08 11:28:08.687435
+Revision ID: b8c97c2da79b
+Revises: aa2b4a90ee2d
+Create Date: 2025-09-11 12:27:54.918427
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a684ce03a672'
-down_revision = None
+revision = 'b8c97c2da79b'
+down_revision = 'aa2b4a90ee2d'
 branch_labels = None
 depends_on = None
 
@@ -21,7 +21,10 @@ def upgrade():
     op.create_table('student',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
-    sa.PrimaryKeyConstraint('id')
+    sa.Column('email', sa.String(length=500), nullable=False),
+    sa.Column('created_at', sa.DateTime(timezone=True), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email')
     )
     # ### end Alembic commands ###
 

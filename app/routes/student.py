@@ -1,29 +1,33 @@
 from flask import Blueprint,jsonify,request
 
-#create studen blueprint
-student_bp = Blueprint("student", __name__, url_prefix = "/student")
+#create student bluprint
+student_bp=Blueprint("student",__name__)
 
-#routes and controllers logic
 
-@student_bp.route("/", methods=["GET"])
-def home():
+@student_bp.route("/",methods=["GET"])
+def single_student():
     print("Single student")
-    return "SIngle student"
-
-#ADD a student
-@student_bp.route("/add", methods=["POST"])
-def add_user():
-    print ("Add user was hit")
-    return "Adding a user"
-
-@student_bp.route("/edit", methods=["PUT"])
-def edit_user():
-    print ("Add user was successful")
-    return "Editing a user"
+    return "Single student"
 
 
-@student_bp.route("/list",methods = ["GET"])
+@student_bp.route("/add/json",methods=["POST"])
+def add_user_json():
+    print("Add user was hit")
+    data=request.get_json() 
+    print("Received Data",data)
+    return "Adding a student",200
+
+@student_bp.route("/add/form",methods=["POST"])
+def add_user_form():
+    print("Add user was hit")
+    return "Adding a student",200
+
+@student_bp.route("/edit",methods=["PUT"])
+def edit_student():
+    print("Add user was hit")
+    return "Edit a student"
+
+@student_bp.route("/list",methods=["GET"])
 def list_users():
-    print("List students")
-    return "List All students: FROM"
-
+    print("List Students")
+    return "List All students"
