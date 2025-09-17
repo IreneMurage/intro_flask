@@ -17,3 +17,5 @@ def create_app():
 #register blueprints
     app.register_blueprint(student_bp)
     return app
+
+    
